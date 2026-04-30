@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Harlow Payments — BDR Rebuttal Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0c0c0c;
+  --bg2: #131313;
+  --bg3: #1e1e1e;
+  --bg4: #252525;
+  --accent: #00c48c;
+  --accent-dim: rgba(0,196,140,0.15);
+  --accent-border: rgba(0,196,140,0.4);
+  --text: #f0ede6;
+  --muted: #888;
+  --border: rgba(255,255,255,0.09);
+  --border2: rgba(255,255,255,0.18);
+  --btn-bg: #1e1e1e;
+  --btn-text: #d8d5ce;
+  --btn-border: rgba(255,255,255,0.2);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 3rem;
+  background: rgba(12,12,12,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 1.2rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent);
+}
+.nav-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--bg);
+  background: var(--accent); border: none; padding: 0.55rem 1.4rem;
+  cursor: pointer; text-decoration: none;
+}
+.nav-cta:hover { background: #00e8a8; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 3rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,196,140,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,196,140,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-glow {
+  position: absolute; top: -200px; right: -100px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,196,140,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.75rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  display: inline-block; margin-bottom: 1.5rem;
+  border: 1px solid rgba(0,196,140,0.35);
+  padding: 0.3rem 0.9rem;
+  animation: fadeUp 0.6s ease both;
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 0.92; letter-spacing: -0.01em;
+  text-transform: uppercase;
+  max-width: 900px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--muted); max-width: 520px;
+  margin-top: 1.75rem; line-height: 1.7;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-actions {
+  display: flex; gap: 1rem; align-items: center;
+  margin-top: 2.5rem;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.btn-main {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 1rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--bg);
+  background: var(--accent); border: none;
+  padding: 0.85rem 2.2rem; cursor: pointer; text-decoration: none;
+  display: inline-block;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-main:hover { background: #00e8a8; transform: translateY(-1px); }
+.btn-ghost {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.9rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  border: 1px solid var(--border2); padding: 0.85rem 2rem;
+  text-decoration: none; transition: color 0.15s, border-color 0.15s;
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--border2); }
+.hero-stats {
+  display: flex; gap: 3rem; margin-top: 4rem;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+.stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 2.2rem; color: var(--text); line-height: 1;
+}
+.stat-lbl { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; margin-top: 4px; }
+
+/* MARQUEE */
+.marquee-wrap {
+  overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 1rem 0; background: var(--bg2);
+}
+.marquee-track {
+  display: flex; gap: 3rem; white-space: nowrap;
+  animation: marquee 22s linear infinite;
+}
+.marquee-item {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted); flex-shrink: 0;
+}
+.marquee-dot { color: var(--accent); margin-right: 3rem; }
+
+/* HOW IT WORKS */
+.section { padding: 6rem 3rem; }
+.section-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.7rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+}
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.8rem);
+  text-transform: uppercase; line-height: 0.95; letter-spacing: -0.01em;
+  max-width: 700px; margin-bottom: 1rem;
+}
+.section-sub { color: var(--muted); max-width: 480px; font-size: 1rem; line-height: 1.7; margin-bottom: 3.5rem; }
+
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.step {
+  background: var(--bg2); padding: 2.5rem 2rem;
+  border: 1px solid var(--border); position: relative;
+  transition: background 0.2s;
+}
+.step:hover { background: var(--bg3); }
+.step-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 4rem; color: rgba(240,165,0,0.12);
+  line-height: 1; margin-bottom: 1.2rem;
+}
+.step h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 1.25rem; text-transform: uppercase;
+  letter-spacing: 0.04em; margin-bottom: 0.75rem;
+}
+.step p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+.step-accent { color: var(--accent); }
+
+/* OBJECTION PREVIEW SECTION */
+.preview-section { padding: 6rem 3rem; background: var(--bg2); border-top: 1px solid var(--border); }
+.preview-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 3rem; }
+.obj-preview-list { display: flex; flex-direction: column; gap: 3px; }
+.opb {
+  text-align: left; font-family: 'Barlow', sans-serif;
+  font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.1rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #2a2a2a;
+  color: #e8e4dc; cursor: pointer; transition: all 0.15s;
+  width: 100%; margin-bottom: 5px; display: block;
+}
+.opb:hover {
+  background: #333; border-color: var(--accent);
+  color: #fff;
+}
+.opb.active {
+  background: var(--accent-dim); border-color: var(--accent);
+  border-left: 4px solid var(--accent); color: #fff;
+}
+.reb-preview {
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 2rem; min-height: 240px;
+  position: sticky; top: 80px;
+}
+.reb-preview-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.reb-preview-obj {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 1.1rem; text-transform: uppercase;
+  letter-spacing: 0.03em; margin-bottom: 1rem; color: var(--text);
+  border-bottom: 1px solid var(--border); padding-bottom: 0.75rem;
+}
+.reb-preview-text {
+  font-size: 0.9rem; color: #bbb; line-height: 1.75;
+  white-space: pre-wrap;
+}
+.reb-empty-state {
+  display: flex; align-items: center; justify-content: center;
+  height: 160px; color: var(--muted); font-size: 0.875rem;
+  font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* FULL TOOL SECTION */
+.tool-section {
+  padding: 6rem 3rem; border-top: 1px solid var(--border);
+}
+.tool-wrap {
+  background: var(--bg2); border: 1px solid var(--border2);
+  padding: 2.5rem; margin-top: 3rem;
+  max-width: 900px;
+}
+/* Tool styles */
+.t-topbar { display: flex; gap: 8px; margin-bottom: 1rem; }
+.t-topbar input {
+  flex: 1; font-family: 'Barlow', sans-serif; font-size: 14px;
+  padding: 10px 14px; border: 1px solid var(--border2);
+  background: var(--bg); color: var(--text); outline: none;
+}
+.t-topbar input:focus { border-color: var(--accent); }
+.t-topbar input::placeholder { color: var(--muted); }
+.tbtn {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 10px 18px;
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--muted); cursor: pointer; white-space: nowrap;
+  transition: all 0.1s;
+}
+.tbtn:hover { background: var(--bg3); color: var(--text); }
+.tbtn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.tbtn.primary:hover { background: #00e8a8; }
+.t-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.t-obj-btn {
+  text-align: left; font-family: 'Barlow', sans-serif;
+  font-size: 13px; font-weight: 600; padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #2a2a2a;
+  color: #e8e4dc; cursor: pointer; margin-bottom: 5px;
+  transition: all 0.15s; width: 100%; display: block;
+}
+.t-obj-btn:hover { background: #333; color: #fff; border-color: var(--accent); }
+.t-obj-btn.active { background: var(--accent-dim); border-color: var(--accent); color: #fff; border-left: 4px solid var(--accent); }
+.t-obj-btn.hidden { display: none; }
+.t-reb-panel {
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 1.5rem; min-height: 260px;
+}
+.t-reb-lbl {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.t-reb-text { font-size: 13px; color: #bbb; line-height: 1.75; white-space: pre-wrap; }
+.t-empty { display: flex; align-items: center; justify-content: center; height: 200px; color: var(--muted); font-size: 13px; }
+.t-form { display: none; flex-direction: column; gap: 10px; margin-bottom: 1rem; }
+.t-form.open { display: flex; }
+.t-flbl { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+.t-form textarea {
+  font-family: 'Barlow', sans-serif; font-size: 13px;
+  padding: 10px 14px; border: 1px solid var(--border2);
+  background: var(--bg); color: var(--text); resize: none; outline: none; line-height: 1.5;
+}
+.t-form textarea:focus { border-color: var(--accent); }
+.t-form-row { display: flex; gap: 8px; justify-content: flex-end; }
+.del-btn {
+  float: right; padding: 2px 7px; font-size: 11px;
+  border: none; background: transparent; color: #555; cursor: pointer;
+}
+.del-btn:hover { color: var(--accent); }
+.no-results { font-size: 13px; color: var(--muted); padding: 1rem 0; text-align: center; }
+
+/* CTA FOOTER */
+.cta-section {
+  padding: 7rem 3rem; text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  position: relative; overflow: hidden;
+}
+.cta-glow {
+  position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(0,196,140,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-section h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: clamp(2.5rem,6vw,5rem);
+  text-transform: uppercase; line-height: 0.92; margin-bottom: 1.5rem;
+}
+.cta-section h2 em { font-style: normal; color: var(--accent); }
+.cta-section p { color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; max-width: 400px; margin-left: auto; margin-right: auto; }
+footer {
+  padding: 1.5rem 3rem; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 1rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent);
+}
+.footer-note { font-size: 0.75rem; color: var(--muted); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .hero-stats { gap: 2rem; }
+  .section, .preview-section, .tool-section, .cta-section { padding: 4rem 1.5rem; }
+  .steps, .preview-layout, .t-layout { grid-template-columns: 1fr; }
+  .t-reb-panel { min-height: 180px; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Harlow <span style="color:var(--text);font-weight:400">Payments</span></div>
+  <a href="#tool" class="nav-cta">Open Playbook</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">Harlow Payments — BDR Cold Call Playbook</div>
+  <h1>Never Get <em>Caught</em><br>Off Guard Again</h1>
+  <p class="hero-sub">Every objection you'll hear on a cold call — with the exact words to push through it and get the statement.</p>
+  <div class="hero-actions">
+    <a href="#tool" class="btn-main">Open Playbook</a>
+    <a href="#how" class="btn-ghost">How it works</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">10</div>
+      <div class="stat-lbl">Objections covered</div>
+    </div>
+    <div>
+      <div class="stat-num">3×</div>
+      <div class="stat-lbl">Push-throughs each</div>
+    </div>
+    <div>
+      <div class="stat-num">1</div>
+      <div class="stat-lbl">Goal: the statement</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">I'm too busy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">I'm happy with who I have</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">We just switched</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Not interested</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">My brother handles it</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">I'm paying zero fees</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Just email me something</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">I don't know how to get my statement</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">I'm too busy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">I'm happy with who I have</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">We just switched</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Not interested</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">My brother handles it</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">I'm paying zero fees</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Just email me something</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">I don't know how to get my statement</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-tag">How it works</div>
+  <h2 class="section-title">Built for<br><em style="font-style:normal;color:var(--accent)">live calls</em></h2>
+  <p class="section-sub">No flipping through notes. No freezing up. Click the objection you're hearing right now — the rebuttal is right there.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Hear the objection</h3>
+      <p>Tony pushes back. You don't panic. You've heard it before — it's in the list.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Click it</h3>
+      <p>One tap pulls up your word-for-word response — with up to 3 push-through lines if they keep resisting.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Get the statement</h3>
+      <p>Every rebuttal leads back to the same place. One job. One goal. Don't hang up without a commitment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW SECTION -->
+<section class="preview-section" id="preview">
+  <div class="section-tag">Live preview</div>
+  <h2 class="section-title">Click any<br><em style="font-style:normal;color:var(--accent)">objection</em></h2>
+  <div class="preview-layout">
+    <div class="obj-preview-list" id="preview-list"></div>
+    <div class="reb-preview" id="preview-panel">
+      <div class="reb-empty-state">← Select an objection</div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL TOOL -->
+<section class="tool-section" id="tool">
+  <div class="section-tag">Your playbook</div>
+  <h2 class="section-title">The Full<br><em style="font-style:normal;color:var(--accent)">Deck</em></h2>
+  <p class="section-sub">Use during live calls. Search to find fast. Add your own cards as you build new talk-offs.</p>
+
+  <div class="tool-wrap">
+    <div class="t-topbar">
+      <input type="text" id="t-search" placeholder="Search objections..." oninput="toolFilter()"/>
+      <button class="tbtn" onclick="toolToggleForm()">+ Add card</button>
+    </div>
+    <div id="t-form" class="t-form">
+      <div>
+        <div class="t-flbl">Objection</div>
+        <textarea id="t-obj-in" rows="2" placeholder="e.g. Call me back next week"></textarea>
+      </div>
+      <div>
+        <div class="t-flbl">Rebuttal</div>
+        <textarea id="t-reb-in" rows="3" placeholder="e.g. I totally understand..."></textarea>
+      </div>
+      <div class="t-form-row">
+        <button class="tbtn" onclick="toolToggleForm()">Cancel</button>
+        <button class="tbtn primary" onclick="toolAddCard()">Save card</button>
+      </div>
+    </div>
+    <div class="t-layout">
+      <div id="t-list"></div>
+      <div class="t-reb-panel" id="t-panel">
+        <div class="t-empty">← Click an objection</div>
+      </div>
+    </div>
+    <div id="t-no-results" class="no-results" style="display:none">No matches found.</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <h2>One job.<br><em>Get the statement.</em></h2>
+  <p>Never hang up without a commitment. The statement is the door — you open it.</p>
+  <a href="#tool" class="btn-main">Open Playbook</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Harlow <span style="color:var(--muted);font-weight:300">Payments</span></div>
+  <div class="footer-note">BDR Rebuttal Playbook — Internal Use Only</div>
+</footer>
+
+<script>
+const CARDS=[
+  {obj:"I'm too busy right now",reb:"I promise this is 20 seconds. Just snap a photo of your statement and text it to me. That's it — you can do that right now while we're talking.\n\n▸ Push 2: I get it — you're running a business. That's exactly why I need just 20 seconds. Businesses in your area are saving $200–$400 a month. The statement tells us if you're one of them.\n\n▸ Push 3: Tony — give me 20 seconds. Snap a photo. Text it. That's all I'm asking."},
+  {obj:"I'm happy with who I have",reb:"That's good to hear — honestly that's exactly who we work best with. Usually it just means no one's shown you a better option yet. If everything checks out, you'll know you're in a good spot. Send me the statement and we'll verify."},
+  {obj:"We just switched recently",reb:"Got it — that's actually the best time to double-check. A lot of companies promise savings upfront that don't always show up on the statement. Let me verify you got a good deal. Send me that first statement.\n\n▸ Push 2: You just made a big decision — don't you want to know for sure it was the right one?"},
+  {obj:"I'm not interested",reb:"I'm not asking you to be interested in switching — just interested in knowing if you're overpaying. Two different things. Send me the statement.\n\n▸ Push 2: If I could show you you're paying $300 more than you need to — would you want to know that? Of course you would.\n\n▸ Push 3: I make 200 calls a day and I wouldn't push this hard if there wasn't money on the table. 20 seconds. Snap a photo. Text it."},
+  {obj:"My brother / partner handles it",reb:"Perfect — what's the best way to reach them? I can call, text, or email.\n\n▸ Warm handoff: Any chance you could put them on right now? Two minutes and you could both be saving real money every month.\n\n▸ Get them to send it: The statement is just a piece of paper — not a financial decision. Snap a photo and I'll reach out to your brother with the full analysis.\n\n😂 Dane Cook: His brother stole millions from him — let's make sure you're in the loop too.\n😂 Thanksgiving: Our cost is the same whether it's you or your brother making the decision."},
+  {obj:"I'm already paying $0 / transact for free",reb:"Zero fee programs aren't free — your processor is passing those fees to your customers as a surcharge. You might be losing business because of it. Send me the statement and I'll show you exactly what's happening.\n\n▸ Push 2: A lot of owners say that, then I look at the statement and find monthly minimums, PCI fees, equipment leases. Text me a photo right now.\n\n▸ Trend data: 2% of businesses were on transact for free a few years ago — now it's 34%. Gas stations, DMVs, concert tickets. By 2030 it'll be 85–90%. The question is whether your setup is actually clean."},
+  {obj:"Just email me something",reb:"Totally — I just want to make sure it's actually useful. Most of what I could send is generic. If I can take 30 seconds to look at your current setup, I'll send you something specific to your numbers instead of a brochure."},
+  {obj:"I don't know how to get my statement",reb:"No problem — I'll walk you through it right now. Who's your current processor? … Perfect. Log into their portal and look for 'statements' or 'billing history.' I'll stay on the line with you. Once you find it, just snap a photo and text it to me."},
+  {obj:"I'm not the decision maker",reb:"No problem — who handles that on your end? Is that something you could pass along, or would it be better if I called them directly? … Can you give me their number right now?"},
+  {obj:"If your current processor offered a lower rate, would you let them?",reb:"Of course you would. Good news for me — they're not calling. I haven't made a dime off you and I want to give you a better rate. That's why I need to see your statement."},
+];
+
+let cards=[...CARDS];
+try{const s=localStorage.getItem('bdr_cards_lp');if(s)cards=JSON.parse(s);}catch(e){}
+
+function saveCards(){try{localStorage.setItem('bdr_cards_lp',JSON.stringify(cards));}catch(e){}}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// PREVIEW (section)
+let previewActive=null;
+function buildPreview(){
+  const list=document.getElementById('preview-list');
+  list.innerHTML=CARDS.map((c,i)=>`<button class="opb${previewActive===i?' active':''}" onclick="selectPreview(${i})">"${esc(c.obj)}"</button>`).join('');
+  const panel=document.getElementById('preview-panel');
+  if(previewActive===null){panel.innerHTML='<div class="reb-empty-state">← Select an objection</div>';return;}
+  const c=CARDS[previewActive];
+  panel.innerHTML=`<div class="reb-preview-lbl">Rebuttal</div><div class="reb-preview-obj">"${esc(c.obj)}"</div><div class="reb-preview-text">${esc(c.reb)}</div>`;
+}
+function selectPreview(i){previewActive=i;buildPreview();}
+buildPreview();
+
+// FULL TOOL
+let toolActive=null;
+function toolRender(){
+  const q=document.getElementById('t-search').value.toLowerCase().trim();
+  const list=document.getElementById('t-list');
+  list.innerHTML=cards.map((c,i)=>`<button class="t-obj-btn${toolActive===i?' active':''}${(q&&!c.obj.toLowerCase().includes(q)&&!c.reb.toLowerCase().includes(q))?' hidden':''}" onclick="toolSelect(${i})"><button class="del-btn" onclick="event.stopPropagation();toolDelete(${i})">✕</button>"${esc(c.obj)}"</button>`).join('');
+  const visible=list.querySelectorAll('.t-obj-btn:not(.hidden)').length;
+  document.getElementById('t-no-results').style.display=visible===0&&q?'block':'none';
+  const panel=document.getElementById('t-panel');
+  if(toolActive===null||!cards[toolActive]){panel.innerHTML='<div class="t-empty">← Click an objection</div>';return;}
+  const c=cards[toolActive];
+  panel.innerHTML=`<div class="t-reb-lbl">Rebuttal</div><div class="t-reb-text">${esc(c.reb)}</div>`;
+}
+function toolSelect(i){toolActive=i;toolRender();}
+function toolFilter(){toolRender();}
+function toolToggleForm(){
+  const f=document.getElementById('t-form');
+  f.classList.toggle('open');
+  if(f.classList.contains('open'))document.getElementById('t-obj-in').focus();
+}
+function toolAddCard(){
+  const o=document.getElementById('t-obj-in').value.trim();
+  const r=document.getElementById('t-reb-in').value.trim();
+  if(!o||!r){alert('Fill in both fields.');return;}
+  cards.push({obj:o,reb:r});
+  saveCards();
+  document.getElementById('t-obj-in').value='';
+  document.getElementById('t-reb-in').value='';
+  document.getElementById('t-form').classList.remove('open');
+  toolActive=cards.length-1;
+  toolRender();
+}
+function toolDelete(i){
+  if(!confirm('Delete this card?'))return;
+  cards.splice(i,1);
+  if(toolActive===i)toolActive=null;
+  else if(toolActive>i)toolActive--;
+  saveCards();
+  toolRender();
+}
+toolRender();
+</script>
+</body>
+</html>
